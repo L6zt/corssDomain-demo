@@ -1,0 +1,17 @@
+{
+  "name": "cors",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "node ./index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-opn": "^1.0.0",
+    "koa": "^2.10.0",
+    "koa-router": "^7.4.0",
+    "koa-static-server": "^1.4.0"
+  }
+}

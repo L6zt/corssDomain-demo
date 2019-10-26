@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>m.localhost.com</title>
+  <script src="./js/jquery-1.7.1.min.js"></script>
+  <!-- <script src="js/zepto.min.js"></script> -->
+</head>
+<body>
+  <script>
+    // 普通跨域接口
+    $.ajax({
+      type: 'POST',
+      url: 'http://localhost:7001/cors/normalData',
+      data: JSON.stringify({k: 'love'}),
+      success(res) {
+        console.log(res);
+      }
+    });
+    // 带cookie 跨域  加服务控制cookie
+    $.ajax({
+      type: 'POST',
+      url: 'http://localhost:7001/cors/setCookie',
+      contentType: 'application/json',
+      xhrFields: {
+        withCredentials: true
+      },
+      success(res) {
+        console.log(res);
+      }
+    });
+    // 带cookie 跨域  加服务控制cookie 特殊 浏览器会首开启 options（预检查） 接口 再调用 对应的请求方式例如下例 的 post
+   $.ajax({
+      type: 'POST',
+      data: JSON.stringify({k: 'love'}),
+      contentType: 'application/json',
+      url: 'http://localhost:7001/cors/setCookie',
+      xhrFields: {
+        withCredentials: true
+      },
+      success(res) {
+        console.log(res);
+      }
+    });
+    // jsonp 跨域请求
+    $.ajax({
+      type: 'GET',
+      dataType:'jsonp',
+      url: 'http://localhost:7001/jsonp/data',
+      data: {
+        connect: 'love'
+      },
+      success(res) {
+        console.log('jsonp ----- jsonp');
+        console.log(res);
+        console.log('jsonp ---- jsonp');
+      }
+    })
+  </script>
+</body>
+</html>

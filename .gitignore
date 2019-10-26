@@ -1,0 +1,15 @@
+.idea*
+v5/asset/*
+v5/asset-dev/*
+v5/src/fonts/*
+!v5/src/fonts/src/
+v5/src/common/font.less
+.themeconfigrc
+yarn-error.log
+yarn.lock
+package-lock.json
+node_modules
+.svn*
+.DS_Store
+v5/stats.json
+v5/src/static/js/dll/
