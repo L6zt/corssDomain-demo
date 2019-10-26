@@ -1,20 +1,26 @@
 const Koa = require('koa');
+// 路由
 const Router = require('koa-router');
+// 
 const path = require('path');
+//提供静态文件服务
 const koaStaticServer = require('koa-static-server');
+// 打开浏览器
 const opn = require('better-opn');
+// 服务器 1
 const wwwLocalhostComServer = new Koa();
+// 服务器 2
 const mLocalhostComServer = new Koa();
 
-// 
+// 跨域路由
 const wwwCorsRouter = new Router({
   prefix: '/cors'
 });
-
+// 非跨域路由
 const wwwNotCorsRouter = new Router({
   prefix: '/nm'
 });
-
+// jsonp 请求
 const wwwJsonpRouter = new Router({
   prefix: '/jsonp'
 });
@@ -80,6 +86,7 @@ wwwJsonpRouter.get('/data', (ctx, next) => {
     return 
   } else {
     // 相当与返回 js文件
+    // 文本内容 js文件
     ctx.response.set('Content-type', 'application/javascript');
     ctx.body = [
        `${callback}(`,
@@ -91,6 +98,7 @@ wwwJsonpRouter.get('/data', (ctx, next) => {
 wwwLocalhostComServer.use((ctx, next) => {
   const {request} = ctx;
   const {header:{ origin , path}, method} = request;
+  // 对某些特殊 cors 做处理 详情 mdn 文档
   if (method === 'OPTIONS') {
    ctx.response.set('Access-Control-Allow-Origin', origin);
    ctx.response.set('Access-Control-Request-Method' , 'POST');
